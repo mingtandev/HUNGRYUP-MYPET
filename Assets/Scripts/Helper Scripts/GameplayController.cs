@@ -24,7 +24,9 @@ public class GameplayController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveCamera();
+        if(!PlayerController.instance.player_Died) {
+            MoveCamera();
+        }
     }
 
     void MakeInstance(){
@@ -36,11 +38,11 @@ public class GameplayController : MonoBehaviour
         if(gameJustStarted){
             //remember check player alive
 
-            if(moveSpeed<12f)
+            if(moveSpeed<10f)
                 moveSpeed+=Time.deltaTime*5f;
             else
             {
-                moveSpeed=12f;
+                moveSpeed=10f;
                 gameJustStarted = false;  //end demo game
             }
 
@@ -56,8 +58,8 @@ public class GameplayController : MonoBehaviour
 
         int round = Mathf.RoundToInt(distance_Move);
 
-        if(round>=30 && round < 60)  moveSpeed=14f;
-        else if(moveSpeed>=60)  moveSpeed = 16f;    
+        if(round>=30 && round < 60)  moveSpeed=12f;
+        else if(moveSpeed>=60)  moveSpeed = 14f;    
     }
 
 
