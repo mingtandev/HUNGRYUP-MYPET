@@ -24,11 +24,13 @@ public class PlayerController : MonoBehaviour
     
     private void Awake() {
         anim = player.GetComponent<Animator>();
+        MakeSingleton();
+
     }
 
     void Start()
     {
-        MakeSingleton();
+
     }
 
     // Update is called once per frame

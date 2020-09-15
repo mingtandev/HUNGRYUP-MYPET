@@ -14,6 +14,7 @@ public class ObstacleHolder : MonoBehaviour
     private void Awake() {
         firstLinePos = new Vector3(0,0,10f);
         secondLinePos = new Vector3(0.67f , 1.41f , 10f);
+        LimitAxisX = -20f;
         //transform.position = new Vector3(transform.position.x , transform.position.y , 10);
     }
     void OnEnable() {
@@ -34,13 +35,13 @@ public class ObstacleHolder : MonoBehaviour
     void Update()
     {
         transform.position+= new Vector3(-GameplayController.instance.moveSpeed*Time.deltaTime , 0f , 0f);
+        if(transform.localPosition.x<=LimitAxisX){
+            GameplayController.instance.obstacles_Is_Active = false;
+            gameObject.SetActive(false);
+        }
     }
 
-    void MoveLeft(){
-        float posX = transform.position.x;
-        posX-=GameplayController.instance.moveSpeed*Time.deltaTime;
-        transform.position = new Vector2(posX,transform.position.y);
-    }
+
 
 
 }
