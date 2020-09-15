@@ -8,8 +8,6 @@ public class PlayerController : MonoBehaviour
     public static PlayerController instance;
     private Animator anim;
 
-    private string jump_Animation = "PlayerJump";
-    private string change_Line_Animation = "ChangeLine";
 
     public GameObject player,
                       shadow;
