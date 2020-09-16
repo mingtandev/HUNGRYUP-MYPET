@@ -20,6 +20,7 @@ public static class MyTags
 	public static string OB_BOTTOM = "ObBottom";
 	public static string OB_MIDDLE = "ObMiddle";
 	public static string T_REX = "Trex";
+	public static string Double = "Double";
 
 	public static string SORTING_LAYER_TOP_NEAR_GROUND = "Top near ground";
 	public static string SORTING_LAYER_TREE_TOP = "Tree top";

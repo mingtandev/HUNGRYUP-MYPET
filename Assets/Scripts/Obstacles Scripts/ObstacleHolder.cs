@@ -13,7 +13,7 @@ public class ObstacleHolder : MonoBehaviour
     // Start is called before the first frame update
     private void Awake() {
         firstLinePos = new Vector3(0,0,10f);
-        secondLinePos = new Vector3(0.67f , 1.41f , 10f);
+        secondLinePos = new Vector3(0.8f , 1.75f , 10f);
         LimitAxisX = -20f;
         //transform.position = new Vector3(transform.position.x , transform.position.y , 10);
     }
@@ -22,6 +22,7 @@ public class ObstacleHolder : MonoBehaviour
             gameObject.transform.GetChild(i).gameObject.SetActive(true);
         }
         
+        if(this.tag==MyTags.Double) return;
 
         if(Random.value <= 0.5f){
             transform.localPosition = firstLinePos;

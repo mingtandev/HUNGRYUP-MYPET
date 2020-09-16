@@ -83,7 +83,7 @@ public class GameplayController : MonoBehaviour
         while(true){   // loop infinite will not crash when i have return new wait second
             if(!PlayerController.instance.player_Died){
                 if(!obstacles_Is_Active){  //when we not active mean obstaces outside the bounds and reset
-                    if(Random.value <= 0.85f){
+                    if(Random.value <= 0.5f){
                         int randomIdx = 0;
                         do{
                            randomIdx = Random.Range(0,obstacles_List.Length);
@@ -97,7 +97,7 @@ public class GameplayController : MonoBehaviour
                     }
                 }
             }
-            yield return new WaitForSeconds(0.6f);
+            yield return new WaitForSeconds(0.3f);
         }
     }
 

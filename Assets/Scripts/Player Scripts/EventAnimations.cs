@@ -29,5 +29,8 @@ public class EventAnimations : MonoBehaviour
         anim.Play(walk_Animation);
     }
 
+    public void AnimationEnded(){
+        gameObject.SetActive(false);
+    }
    
 }
