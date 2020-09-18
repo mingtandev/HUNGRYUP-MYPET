@@ -20,6 +20,9 @@ TagManager:
   - ObMiddle
   - Trex
   - Star Effect
+  - Double
+  - Score
+  - StarCount
   layers:
   - Default
   - TransparentFX

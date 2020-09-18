@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
 
     private bool TRex_Trigger;
     private GameObject[] star_Effect;
+
+    private string Couroutine_Trex = "TrexMode";
+    private string Couroutine_ScoreUP = "ScoreUP";
     
     private void Awake() {
         anim = player.GetComponent<Animator>();
@@ -41,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
+        StartCoroutine(Couroutine_ScoreUP);
     }
 
     // Update is called once per frame
@@ -137,7 +140,6 @@ public class PlayerController : MonoBehaviour
         explosion.transform.position = target.transform.position;
         explosion.SetActive(false);
         explosion.SetActive(true);
-
         target.gameObject.SetActive(false);
 
         //Sound manager 
@@ -147,6 +149,8 @@ public class PlayerController : MonoBehaviour
         if(target.tag==MyTags.OBSTACLE){
             if(!TRex_Trigger){
                 DieWithObstacles(target);
+                StopCoroutine(Couroutine_ScoreUP);  //Stop up score
+                StartCoroutine(GM.instace.ShowUIEndGame());
             }
             else{  //in trex mode
                 DestroyObstacles(target);
@@ -154,16 +158,20 @@ public class PlayerController : MonoBehaviour
         }
 
         if(target.tag==MyTags.T_REX){
+            if(TRex_Trigger)
+                StopCoroutine(Couroutine_Trex);
+
             TRex_Trigger=true;
             player_Renderer.sprite = TRex_Sprite;
             target.gameObject.SetActive(false);
-
-            StartCoroutine(TrexMode());
+            
+            StartCoroutine(Couroutine_Trex);
 
             //SOUND MANAGER TO PLAY MUSIC
         }
 
         if(target.tag==MyTags.STAR){
+            ScoreUI.instance.star++;
             for(int i = 0 ; i < star_Effect.Length ; i++){
                 if(!star_Effect[i].activeInHierarchy){
                     star_Effect[i].transform.position = target.transform.position;
@@ -177,6 +185,14 @@ public class PlayerController : MonoBehaviour
             //PLAY SOUND
             //CONTROLLER INCREASE STAR SCORE
         }
+    }
+
+    IEnumerator ScoreUP(){
+        ScoreUI.instance.score++;
+
+        yield return new WaitForSeconds(0.5f);
+
+        StartCoroutine(Couroutine_ScoreUP);
     }
 
 }

@@ -33,4 +33,6 @@ public class EventAnimations : MonoBehaviour
         gameObject.SetActive(false);
     }
    
+
+   
 }
