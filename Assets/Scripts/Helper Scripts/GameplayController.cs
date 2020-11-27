@@ -66,7 +66,7 @@ public class GameplayController : MonoBehaviour
         distance_Move+=Time.deltaTime * distance_factor;
 
         int round = Mathf.RoundToInt(distance_Move);
-
+        
         if(round>=30 && round < 60)  moveSpeed=12f;
         else if(moveSpeed>=60)  moveSpeed = 14f;    
     }
@@ -100,6 +100,4 @@ public class GameplayController : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
         }
     }
-
-
 }

@@ -23,6 +23,7 @@ TagManager:
   - Double
   - Score
   - StarCount
+  - StarCountSelect
   layers:
   - Default
   - TransparentFX

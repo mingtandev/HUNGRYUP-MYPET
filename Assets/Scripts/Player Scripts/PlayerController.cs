@@ -44,7 +44,10 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("sprites/"+"hero"+GM.data.Selected_Index.ToString()+"_big");
         StartCoroutine(Couroutine_ScoreUP);
+        transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("sprites/"+"hero"+GM.data.Selected_Index.ToString()+"_big");
+        player_Sprite = transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
     }
 
     // Update is called once per frame
@@ -116,7 +119,7 @@ public class PlayerController : MonoBehaviour
         player.SetActive(false);
         shadow.SetActive(false);
         GameplayController.instance.moveSpeed = 0f;
-
+        ScoreUI.instance.SaveDataToFile();
         //PLAY SOUND PLAYER DEAD
         //PLAY SOUND GAME OVER
     }

@@ -5,7 +5,7 @@ using TMPro;
 public class ScoreUI : MonoBehaviour
 {
     // Start is called before the first frame update
-    
+
     public static ScoreUI instance;
     public int score;
     public int star;
@@ -14,15 +14,18 @@ public class ScoreUI : MonoBehaviour
     public TextMeshProUGUI text_starScore;
 
     public TextMeshProUGUI End_text_Score;
-    public TextMeshProUGUI End_text_starScore; 
+    public TextMeshProUGUI End_text_starScore;
 
-    private void Awake() {
+    public TextMeshProUGUI Best_Score;
+
+    private GameData data;
+    private void Awake()
+    {
         MakeInstance();
-        
     }
     void Start()
     {
-        
+        Best_Score.text = GM.instace.myScore.ToString();
     }
 
     // Update is called once per frame
@@ -33,17 +36,32 @@ public class ScoreUI : MonoBehaviour
         End_text_Score.text = score.ToString();
         End_text_starScore.text = star.ToString();
 
+
+
     }
 
-    void MakeInstance(){
-        if(instance==null){
+    void MakeInstance()
+    {
+        if (instance == null)
+        {
             instance = this;
         }
-        else{
+        else
+        {
             Destroy(gameObject);
         }
     }
 
+    public void SaveDataToFile()
+    {
+        int bestScoreToInt = int.Parse(Best_Score.text);
+        if (bestScoreToInt < int.Parse(text_Score.text))
+        {
+            Best_Score.text = text_Score.text;
+        }
+        GM.instace.SaveData(score, star);
+    }
 
-    
+
+
 }
